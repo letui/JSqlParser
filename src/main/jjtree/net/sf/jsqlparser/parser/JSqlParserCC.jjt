@@ -51,6 +51,7 @@ import net.sf.jsqlparser.statement.create.view.*;
 import net.sf.jsqlparser.statement.delete.*;
 import net.sf.jsqlparser.statement.drop.*;
 import net.sf.jsqlparser.statement.insert.*;
+import net.sf.jsqlparser.statement.rename.*;
 import net.sf.jsqlparser.statement.replace.*;
 import net.sf.jsqlparser.statement.execute.*;
 import net.sf.jsqlparser.statement.select.*;
@@ -495,6 +496,8 @@ Statement SingleStatement() :
         |
         LOOKAHEAD(AlterSequence())
         stm = AlterSequence()
+        |
+        stm=Rename()
         |
         stm = Drop()
         |
@@ -4481,6 +4484,24 @@ List<String> ColumnsNamesList():
     ")"
     {
         return retval;
+    }
+}
+
+Rename Rename():{
+    Rename rename=new Rename();
+    Token tk = null;
+}
+{
+    <K_RENAME>
+    (
+        tk=<S_IDENTIFIER>
+        |
+        tk=<K_TABLE>
+    )
+    {
+    rename.setType(tk.image);
+    rename.setRestTokens(captureRest());
+    return rename;
     }
 }
 

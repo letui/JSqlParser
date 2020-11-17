@@ -25,6 +25,7 @@ import net.sf.jsqlparser.statement.execute.Execute;
 import net.sf.jsqlparser.statement.grant.Grant;
 import net.sf.jsqlparser.statement.insert.Insert;
 import net.sf.jsqlparser.statement.merge.Merge;
+import net.sf.jsqlparser.statement.rename.Rename;
 import net.sf.jsqlparser.statement.replace.Replace;
 import net.sf.jsqlparser.statement.select.Select;
 import net.sf.jsqlparser.statement.show.ShowTablesStatement;
@@ -87,11 +88,11 @@ public interface StatementVisitor {
 
     void visit(DescribeStatement describe);
 
-    public void visit(ExplainStatement aThis);
+    void visit(ExplainStatement aThis);
 
-    public void visit(ShowStatement aThis);
+    void visit(ShowStatement aThis);
 
-    public void visit(DeclareStatement aThis);
+    void visit(DeclareStatement aThis);
 
     void visit(Grant grant);
 
@@ -102,4 +103,6 @@ public interface StatementVisitor {
     void visit(CreateFunctionalStatement createFunctionalStatement);
 
     void visit(CreateSynonym createSynonym);
+
+    void visit(Rename rename);
 }

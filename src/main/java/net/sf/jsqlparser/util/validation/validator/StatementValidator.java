@@ -41,6 +41,7 @@ import net.sf.jsqlparser.statement.execute.Execute;
 import net.sf.jsqlparser.statement.grant.Grant;
 import net.sf.jsqlparser.statement.insert.Insert;
 import net.sf.jsqlparser.statement.merge.Merge;
+import net.sf.jsqlparser.statement.rename.Rename;
 import net.sf.jsqlparser.statement.replace.Replace;
 import net.sf.jsqlparser.statement.select.Select;
 import net.sf.jsqlparser.statement.show.ShowTablesStatement;
@@ -252,6 +253,11 @@ public class StatementValidator extends AbstractValidator<Statement> implements 
     @Override
     public void visit(CreateSynonym createSynonym) {
         getValidator(CreateSynonymValidator.class).validate(createSynonym);
+    }
+
+    @Override
+    public void visit(Rename rename) {
+
     }
 
 }

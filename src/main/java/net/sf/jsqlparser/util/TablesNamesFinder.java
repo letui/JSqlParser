@@ -75,6 +75,7 @@ import net.sf.jsqlparser.statement.execute.Execute;
 import net.sf.jsqlparser.statement.grant.Grant;
 import net.sf.jsqlparser.statement.insert.Insert;
 import net.sf.jsqlparser.statement.merge.Merge;
+import net.sf.jsqlparser.statement.rename.Rename;
 import net.sf.jsqlparser.statement.replace.Replace;
 import net.sf.jsqlparser.statement.select.AllColumns;
 import net.sf.jsqlparser.statement.select.AllTableColumns;
@@ -908,6 +909,11 @@ public class TablesNamesFinder implements SelectVisitor, FromItemVisitor, Expres
     @Override
     public void visit(CreateSynonym createSynonym) {
         throwUnsupported(createSynonym);
+    }
+
+    @Override
+    public void visit(Rename rename) {
+
     }
 
     private static <T> void throwUnsupported(T type){
