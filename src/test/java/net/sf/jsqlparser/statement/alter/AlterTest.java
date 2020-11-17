@@ -41,6 +41,13 @@ import org.junit.Test;
 public class AlterTest {
 
     @Test
+    public void testAlterWithoutColumnTypes() throws JSQLParserException {
+        Statement stmt = CCJSqlParserUtil.
+                parse("ALTER TABLE \"C##TEST\".\"DEVELOPER\" \n" +
+                        "MODIFY (\"ENTRY_DATE\"   NULL )");
+    }
+
+    @Test
     public void testAlterTableAddColumn() throws JSQLParserException {
         Statement stmt = CCJSqlParserUtil.
                 parse("ALTER TABLE mytable ADD COLUMN mycolumn varchar (255)");

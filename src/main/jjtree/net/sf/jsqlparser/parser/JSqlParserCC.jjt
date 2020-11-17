@@ -4245,7 +4245,9 @@ ColDataType ColDataType():
 		| tk=<K_UNSIGNED> tk2=<S_IDENTIFIER> {colDataType.setDataType(tk.image + " " + tk2.image);}
 		| LOOKAHEAD(2) tk=<K_SIGNED> tk2=<S_IDENTIFIER> {colDataType.setDataType(tk.image + " " + tk2.image);}
 		| tk=<K_SIGNED> { colDataType.setDataType(tk.image);}
+		|(tk=<K_NOT>|tk=<K_NULL>){colDataType.setDataType(null);}
 	)
+	{if(colDataType.getDataType()==null) return colDataType;}
 
     [LOOKAHEAD(2) "(" {tk2 =null;} ( (tk=<S_LONG> [ tk2=<K_BYTE> | tk2=<K_CHAR> ] | tk=<S_CHAR_LITERAL> | tk=<S_IDENTIFIER> )
 		{ argumentsStringList.add(tk.image + (tk2!=null?" " + tk2.image:"")); } ["," {/*argumentsStringList.add(",");*/}] )*    ")"]
